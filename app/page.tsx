@@ -54,7 +54,15 @@ export default function Home() {
   // Telegram send
   // --------------------
   function sendToTelegram(finalErrors: string[]) {
+    
     const tg = (window as any).Telegram?.WebApp;
+
+    console.log("TG OBJECT:", tg);
+
+    if (!tg) {
+      alert("НЕ ОТКРЫТО ЧЕРЕЗ TELEGRAM");
+      return;
+    }
 
     const accuracy = Math.round(
       ((SESSION_SIZE - finalErrors.length) / SESSION_SIZE) * 100
