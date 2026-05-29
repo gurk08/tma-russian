@@ -5,6 +5,9 @@ import { words } from "../data/words";
 
 const SESSION_SIZE = 10;
 
+console.log("WINDOW:", window);
+console.log("TELEGRAM:", (window as any).Telegram);
+
 export default function Home() {
   const [sessionWords, setSessionWords] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
