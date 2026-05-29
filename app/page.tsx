@@ -3,6 +3,17 @@
 import { useEffect, useState } from "react";
 import { words } from "../data/words";
 
+useEffect(() => {
+  const tg = (window as any).Telegram?.WebApp;
+
+  if (tg) {
+    tg.ready();
+    tg.expand();
+  }
+
+  console.log("WEBAPP INIT:", tg);
+}, []);
+
 const SESSION_SIZE = 10;
 
 export default function Home() {
@@ -152,6 +163,11 @@ export default function Home() {
   // --------------------
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center gap-8 px-4">
+            <div className="text-white text-sm">
+        {typeof window !== "undefined"
+          ? JSON.stringify((window as any).Telegram?.WebApp || {})
+          : "no window"}
+      </div>
 
       {/* progress */}
       <div className="text-xl">
