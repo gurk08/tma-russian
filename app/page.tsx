@@ -26,7 +26,7 @@ export default function Home() {
     const u = new SpeechSynthesisUtterance(broken);
 
     u.lang = "ru-RU";
-    u.rate = 0.7;
+    u.rate = 0.8;
     u.pitch = 1.2;
 
     speechSynthesis.speak(u);
