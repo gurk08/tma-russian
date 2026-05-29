@@ -21,22 +21,17 @@ export default function Home() {
  function speakWord(word: string) {
   let textToSpeak = word;
 
-  // только для ПРЕ/ПРИ режима
   if (mode === "10") {
     textToSpeak = word
-      .replace(/при/g, "прэ")
-      .replace(/пре/g, "прэ");
-
-    textToSpeak = textToSpeak.split("").join(" ");
+      .replace(/пре/g, "прэ")
+      .replace(/при/g, "прэ");
   }
 
   const u = new SpeechSynthesisUtterance(textToSpeak);
 
   u.lang = "ru-RU";
-  u.rate = 0.9;
-  u.pitch = 1;
-  
 
+  // ничего больше НЕ трогаем
   speechSynthesis.speak(u);
 }
 
