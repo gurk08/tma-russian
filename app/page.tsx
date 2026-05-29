@@ -18,19 +18,27 @@ export default function Home() {
   const [errors, setErrors] = useState<string[]>([]);
   const [finished, setFinished] = useState(false);
 
-  function speakWord(word: string) {
-    const broken = word
-      .split("")
-      .join(" ");
+ function speakWord(word: string) {
+  let textToSpeak = word;
 
-    const u = new SpeechSynthesisUtterance(broken);
+  // только для ПРЕ/ПРИ режима
+  if (mode === "10") {
+    textToSpeak = word
+      .replace(/при/g, "прэ")
+      .replace(/пре/g, "прэ");
 
-    u.lang = "ru-RU";
-    u.rate = 0.8;
-    u.pitch = 1.2;
-
-    speechSynthesis.speak(u);
+    textToSpeak = textToSpeak.split("").join(" ");
   }
+
+  const u = new SpeechSynthesisUtterance(textToSpeak);
+
+  u.lang = "ru-RU";
+  u.rate = 0.9;
+  u.pitch = 1;
+  
+
+  speechSynthesis.speak(u);
+}
 
   function shuffle(arr: string[]) {
     return [...arr].sort(() => Math.random() - 0.5);
